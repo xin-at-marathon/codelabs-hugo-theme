@@ -1,0 +1,15 @@
+digraph {
+    node [ fontname="Adobe Kaiti Std" ];
+    edge [ fontname="Adobe Heiti Std" ];
+
+    "clean-coding" [label="编写干净的代码", URL="posts/clean-coding"];
+    "control-flow" [label="程序流程控制", URL="posts/control-flow"];
+    "debug-and-deploy-application" [label="调试和部署Java程序", URL="posts/debug-and-deploy-application"];
+    "get-started" [label="编写第一个Java程序", URL="posts/get-started"];
+    "types" [label="变量与类型", URL="posts/types"];
+
+    "clean-coding" -> "control-flow";
+    "control-flow" -> "types";
+    "debug-and-deploy-application" -> "clean-coding";
+    "types" -> "get-started";
+}
