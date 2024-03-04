@@ -27,6 +27,8 @@
       rel="stylesheet"
       href="{{ .Site.BaseURL }}google_codelab_scss_bin.css"
     />
+    {{ if .Param "math" }} {{ partialCached "math.html" . }} {{ end }}
+
     <style>
       body {
         transition: opacity ease-in 0.2s;

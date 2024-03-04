@@ -53,7 +53,7 @@
         <ul>
         {{ $cur_path := .Path }}
         {{ range (where .Site.Pages "Section" "recipes") }}
-        {{ if hasPrefix .Path $cur_path }}
+        {{ if (and (ne .Path $cur_path) (hasPrefix .Path $cur_path)) }}
           <li>
             <a href="{{ .Permalink }}"
               id="{{ .Title | urlize }}"

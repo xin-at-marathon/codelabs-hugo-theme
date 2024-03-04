@@ -46,6 +46,9 @@ class PostParser:
         return dot_node_deps
 
     def save_svg(self):
+        if len(self.posts) == 0:
+            return
+
         dot_string = u"""digraph {
     node [ fontname="Adobe Kaiti Std" ];
     edge [ fontname="Adobe Heiti Std" ];
