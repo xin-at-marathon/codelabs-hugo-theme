@@ -1,0 +1,14 @@
+{{ $id := .Get "id" }}
+{{ $index := 0 }}
+{{ $options := findRE `<option.*?>[\S\s]*?</option>` .Inner }}
+
+{{ range $options }}
+{{ $opt_id := (printf "%s-%d" $id $index) }}
+{{ $opt := (replace . "<option>" "") }}
+{{ $opt = (replace $opt "<option answer>" "") }}
+{{ $opt = (replace $opt "</option>" "") }}
+<input type="radio" id="{{ $opt_id }}" name="{{ $id }}" value="{{ $index }}">
+<label for="{{ $opt_id }}">{{ $opt | markdownify }}</label>
+<br/>
+{{ $index = (add $index 1) }}
+{{ end -}}

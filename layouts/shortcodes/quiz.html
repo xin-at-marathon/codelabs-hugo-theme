@@ -1,0 +1,104 @@
+<div>
+{{ $items := split .Inner "\n" }}
+{{ $counter := 0 }}
+
+<form>
+{{ range $items }}
+{{ $parts := split . ":" }}
+
+{{ if ne 2 (len $parts) }}
+{{ continue }}
+{{ end }}
+
+{{ $counter = (add $counter 1) }}
+
+{{ $type := index $parts 0 | chomp }}
+{{ $path := index $parts 1 | chomp }}
+{{ $normalized_path := (replace $path "/" "_") }}
+
+{{ $item_file_path := "" }}
+
+{{ if eq $type "question" }}
+{{ $question_file_path_1 := (printf "static/questions/%s.md" $path) }}
+{{ $question_file_path_2 := (printf "static/questions/%s/index.md" $path) }}
+{{ if (fileExists $question_file_path_1) }}
+{{ $item_file_path = $question_file_path_1 }}
+{{ else }}
+{{ $item_file_path = $question_file_path_2 }}
+{{ end }}
+{{ end }}
+
+{{ if eq $type "problem" }}
+{{ $problem_file_path_1 := (printf "static/problems/%s.md" $path) }}
+{{ $problem_file_path_2 := (printf "static/problems/%s/index.md" $path) }}
+
+{{ if (fileExists $problem_file_path_1) }}
+{{ $item_file_path = $problem_file_path_1 }}
+{{ else }}
+{{ $item_file_path = $problem_file_path_2 }}
+{{ end }}
+{{ end }}
+
+{{ if (gt $counter 1) }} <hr /> {{ end }}
+<strong>第{{ $counter }}题：</strong>
+
+{{ if eq $item_file_path "" }}
+<p>resource file is not found.</p>
+{{ continue }}
+{{ end }}
+
+{{ $markdown := os.ReadFile $item_file_path }}
+{{ $tag_with_args := (printf "<single_selection id=\"%s\">" $normalized_path) }}
+{{ $markdown = replace $markdown "<single_selection>" $tag_with_args}}
+
+{{ $frontMatter := unmarshal $markdown }}
+{{ $md_str := replaceRE `^---[\s\S]+?---` "" $markdown}}
+
+{{ if isset $frontMatter "title" }}
+{{ $md_str = printf "# %s\n%s" $frontMatter.title $md_str }}</h1>
+{{ end}}
+
+
+{{ $md_str | markdownify }} 
+
+{{ if isset $frontMatter "tests" }}
+<h2>测试用例</h2>
+{{ $testCounter := 0 }}
+{{ range $frontMatter.tests }}
+{{ $testCounter = (add $testCounter 1) }}
+<h3>用例{{ $testCounter }} </h3>
+
+{{ if .input }}
+输入：<pre>{{ delimit .input "\n" }}</pre>
+{{ else }}
+输入：无
+{{ end }}
+
+{{ if .output }}
+输出：<pre>{{ delimit .output "\n" }}</pre>
+{{ else }}
+输出：无
+{{ end }}
+
+{{ end }} <!--end range -->
+{{ end }} <!--end if tests -->
+
+<!--
+{{ if eq $type "problem" }}
+<div id="code-runner">
+<h1>输入代码：</h1>
+<div id="editor"></div>
+<div><button id="btnSubmit">提交运行</button></div>
+</div>
+{{ end }}
+-->
+
+{{ end }} <!--end quiz item range-->
+
+
+<!--
+<br/>
+<input type="submit" value="提交" />
+-->
+</form>
+</div>
