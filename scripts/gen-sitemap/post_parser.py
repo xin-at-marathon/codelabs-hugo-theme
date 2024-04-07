@@ -32,7 +32,7 @@ class PostParser:
         for post in self.posts:
             id = post['id']
             fm = post['fm']
-            dot_nodes.append(f'"{id}" [label="{fm['title']}", URL="{id}/"];')
+            dot_nodes.append(f'"{id}" [label="{fm.get('title')}", URL="{id}/"];')
         return dot_nodes
     
     def get_dot_node_deps(self):
