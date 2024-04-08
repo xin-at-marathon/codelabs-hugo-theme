@@ -2,7 +2,6 @@ import frontmatter
 import glob
 from pathlib import Path
 import os
-import pydot    
 
 from subprocess import Popen, PIPE, STDOUT
 
