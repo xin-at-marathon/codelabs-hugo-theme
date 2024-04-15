@@ -1,6 +1,6 @@
 import kaboom from 'kaboom'
 
-let baseUrl = getUrlVars()['baseUrl'].replace(window.location.origin, '')
+let baseUrl = getUrlVars()['baseUrl']
 let params = JSON.parse(getUrlVars()['params'])
 let steps = JSON.parse(getUrlVars()['steps'])
 
@@ -23,7 +23,7 @@ kaboom({
     height: 1000,
     background: [255, 255, 255]
 })
-loadFont('msyh', `${baseUrl}/fonts/msyh-X.ttf`)
+loadFont('msyh', `${baseUrl}fonts/msyh-X.ttf`)
 
 let img1
 let img2
@@ -67,7 +67,7 @@ for (let ingredient of params['ingredients']) {
     ])
 }
 
-loadSprite('img1', baseUrl + '/cookbook/mapo_tofu/1.png')
+loadSprite('img1', baseUrl + 'cookbook/mapo_tofu/1.png')
 img1 = add([
     sprite('img1'),
     // Make the background centered on the screen
@@ -81,7 +81,7 @@ img1 = add([
 const BASE_HEIGHT = 500
 const BASE_LEFT = 250
 
-loadSprite('img2', baseUrl + '/cookbook/mapo_tofu/2.png')
+loadSprite('img2', baseUrl + 'cookbook/mapo_tofu/2.png')
 img2 = add([
     sprite('img2'),
     // Make the background centered on the screen

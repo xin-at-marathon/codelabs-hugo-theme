@@ -1,6 +1,6 @@
 import kaboom from 'kaboom'
 
-let baseUrl = getUrlVars()['baseUrl'].replace(window.location.origin, '')
+let baseUrl = getUrlVars()['baseUrl']
 let params = JSON.parse(getUrlVars()['params'])
 
 kaboom({
@@ -9,14 +9,14 @@ kaboom({
     height: 1000,
     background: [255, 255, 255]
 })
-loadFont('msyh', `${baseUrl}/fonts/msyh-X.ttf`)
+loadFont('msyh', `${baseUrl}fonts/msyh-X.ttf`)
 
 const SCALE = 0.7
 const BASE_HEIGHT = 600
 const BASE_LEFT = 250
 const pad = 25
 
-loadSprite('img3', baseUrl + '/cookbook/mapo_tofu/3.png')
+loadSprite('img3', baseUrl + 'cookbook/mapo_tofu/3.png')
 img3 = add([
     sprite('img3'),
     // Make the background centered on the screen
