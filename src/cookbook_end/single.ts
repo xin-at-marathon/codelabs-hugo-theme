@@ -3,13 +3,15 @@ import kaboom from 'kaboom'
 let baseUrl = getUrlVars()['baseUrl']
 let params = JSON.parse(getUrlVars()['params'])
 
+const FONT = 'happy'
+
 kaboom({
-    font: 'msyh',
+    font: FONT,
     width: 800,
     height: 1000,
     background: [255, 255, 255]
 })
-loadFont('msyh', `${baseUrl}fonts/msyh-X.ttf`)
+loadFont(FONT, `${baseUrl}fonts/happy.ttf`)
 
 const SCALE = 0.7
 const BASE_HEIGHT = 600
@@ -48,7 +50,7 @@ for (let nutrition_fact of params['nutrition_facts']) {
     add([
         text(`[blue].[/blue] [black]${nutrition_fact}[/black]`, {
             // What font to use
-            font: 'msyh',
+            font: FONT,
             size: 18,
             // It'll wrap to next line if the text width exceeds the width option specified here
             width: width() - pad * 2,
@@ -68,7 +70,7 @@ for (let nutrition_fact of params['nutrition_facts']) {
 add([
     text('[blue]注意事项：[/blue]', {
         // What font to use
-        font: 'msyh',
+        font: FONT,
         size: 24,
         // It'll wrap to next line if the text width exceeds the width option specified here
         width: BASE_LEFT,
@@ -87,7 +89,7 @@ for (let tip of params['tips']) {
     add([
         text(`[blue]${i}.[/blue] [black]${tip}[/black]`, {
             // What font to use
-            font: 'msyh',
+            font: FONT,
             size: 18,
             // It'll wrap to next line if the text width exceeds the width option specified here
             width: width() - BASE_LEFT - 50,

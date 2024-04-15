@@ -17,13 +17,14 @@ function getUrlVars() {
     return vars
 }
 
+const FONT = 'happy'
 kaboom({
-    font: 'msyh',
+    font: FONT,
     width: 800,
     height: 1000,
     background: [255, 255, 255]
 })
-loadFont('msyh', `${baseUrl}fonts/msyh-X.ttf`)
+loadFont(FONT, `${baseUrl}fonts/happy.ttf`)
 
 let img1
 let img2
@@ -50,7 +51,7 @@ for (let ingredient of params['ingredients']) {
     add([
         text(`[blue].[/blue] [black]${ingredient}[/black]`, {
             // What font to use
-            font: 'msyh',
+            font: FONT,
             size: 18,
             // It'll wrap to next line if the text width exceeds the width option specified here
             width: width() - pad * 2,
@@ -94,7 +95,7 @@ img2 = add([
 add([
     text('[blue]制作步骤：[/blue]', {
         // What font to use
-        font: 'msyh',
+        font: FONT,
         size: 24,
         // It'll wrap to next line if the text width exceeds the width option specified here
         width: width() - pad * 2,
@@ -113,7 +114,7 @@ for (let step of steps) {
     add([
         text(`[blue]${i}.[/blue] [black]${step}[/black]`, {
             // What font to use
-            font: 'msyh',
+            font: FONT,
             size: 18,
             // It'll wrap to next line if the text width exceeds the width option specified here
             width: width() - pad * 2,
