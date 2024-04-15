@@ -1,6 +1,6 @@
 import kaboom from 'kaboom'
 
-let baseUrl = getUrlVars()['baseUrl']
+let baseUrl = getUrlVars()['baseUrl'].replace(window.location.origin, '')
 let params = JSON.parse(getUrlVars()['params'])
 
 kaboom({
