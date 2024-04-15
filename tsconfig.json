@@ -1,9 +1,11 @@
 {
-    "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "target": "es5",
-        "module": "commonjs",
-        "strict": true
-    }
+	"compilerOptions": {
+		"noEmit": true,
+		"target": "esnext",
+		"moduleResolution": "node",
+		"esModuleInterop": true
+	},
+	"include": [
+		"src/**/*.ts"
+	]
 }
