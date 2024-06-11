@@ -74,12 +74,11 @@
         {{ end -}}
         </ul>
       </div>
-      <div class="site-dag-svg site-width">
+      <!-- <div class="site-dag-svg site-width">
         <h3>路线图：</h3>
-        <!-- SITE_DAG_SVG -->
         {{ $svg_path := (printf "static%s.svg" .Path) }}
         {{ os.ReadFile $svg_path | safeHTML}}
-      </div>
+      </div> -->
     </main>
     {{ if .Site.Params.footer -}}
     <footer>
